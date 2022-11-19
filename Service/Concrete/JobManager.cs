@@ -24,7 +24,7 @@ namespace Service.Concrete
             return _jobDal.Get(p => p.JobId == id);
         }
 
-        public JobDetailDto GetJobDetails(int id)
+        public List<JobDetailDto> GetJobDetails(int id)
         {
             return _jobDal.GetJobDetails(id);
         }

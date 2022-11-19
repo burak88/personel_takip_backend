@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfJobDal : GenericRepository<Job>, IJobDal
     {
-        public JobDetailDto GetJobDetails(int id)
+        public List<JobDetailDto> GetJobDetails(int id)
         {
             using (AppDbContext context = new AppDbContext())
             {
@@ -32,7 +32,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  UserId = j.UserId,
                                  WorkTypeName = w.WorkTypeName
                              };
-                return result.FirstOrDefault(x=>x.UserId == id);
+                return result.Where(x=>x.UserId == id).ToList();
             }
         }
     }

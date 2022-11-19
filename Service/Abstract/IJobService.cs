@@ -15,6 +15,6 @@ namespace Service.Abstract
         void JobUpdate(Job job);
         Job GetById(int id);
         List<Job> GetList();
-        JobDetailDto GetJobDetails(int id);
+        List<JobDetailDto> GetJobDetails(int id);
     }
 }

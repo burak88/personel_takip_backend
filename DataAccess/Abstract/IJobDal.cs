@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface IJobDal : IRepository<Job>
     {
-        JobDetailDto GetJobDetails(int id);
+        List<JobDetailDto> GetJobDetails(int id);
     }
 }
