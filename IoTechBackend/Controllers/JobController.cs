@@ -10,7 +10,7 @@ namespace IoTechBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class JobController : ControllerBase
     {
         JobManager jobManager = new JobManager(new EfJobDal());
@@ -44,6 +44,20 @@ namespace IoTechBackend.Controllers
         {
              jobManager.JobUpdate(job);
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+
+            var user = context.Jobs.Find(id);
+
+            if (user == null)
+                return NotFound();
+
+            jobManager.JobDelete(user);
+
+            return NoContent();
         }
 
     }
