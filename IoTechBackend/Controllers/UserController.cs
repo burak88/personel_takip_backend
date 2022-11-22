@@ -9,7 +9,7 @@ namespace IoTechBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   [Authorize]
 
     public class UserController : ControllerBase
     {
@@ -25,18 +25,25 @@ namespace IoTechBackend.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = userManager.GetById(id);
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
             userManager.UserAdd(user);
-            return Ok();
+            return Ok(GetById(user.UserId));
         }
 
         [HttpPut("update")]
         public IActionResult Update(User user)
         {
             userManager.UserUpdate(user);
-            return Ok();
+            return Ok(GetById(user.UserId));
         }
 
         [HttpDelete("{id}")]
@@ -50,7 +57,7 @@ namespace IoTechBackend.Controllers
 
             userManager.UserDelete(user);
 
-            return NoContent();
+            return GetById(user.UserId);
         }
 
     }

@@ -16,7 +16,7 @@ namespace IoTechBackend.Controllers
         JobManager jobManager = new JobManager(new EfJobDal());
         AppDbContext context = new AppDbContext();
         
-
+        
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
@@ -33,16 +33,18 @@ namespace IoTechBackend.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Job job)
+        public  IActionResult Add(Job job)
         {
             jobManager.JobAdd(job);
+            
             return Ok();
         }
 
         [HttpPut("update")]
         public IActionResult Update(Job job)
         {
-             jobManager.JobUpdate(job);
+            jobManager.JobUpdate(job);
+            
             return Ok();
         }
 
@@ -54,9 +56,7 @@ namespace IoTechBackend.Controllers
 
             if (user == null)
                 return NotFound();
-
             jobManager.JobDelete(user);
-
             return NoContent();
         }
 
