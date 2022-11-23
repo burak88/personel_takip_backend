@@ -10,18 +10,18 @@ namespace IoTechBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class JobController : ControllerBase
     {
         JobManager jobManager = new JobManager(new EfJobDal());
         AppDbContext context = new AppDbContext();
-        
-        
+
+
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = jobManager.GetJobDetails(id); 
+            var result = jobManager.GetJobDetails(id);
             return Ok(result);
         }
 
@@ -33,10 +33,10 @@ namespace IoTechBackend.Controllers
         }
 
         [HttpPost("add")]
-        public  IActionResult Add(Job job)
+        public IActionResult Add(Job job)
         {
             jobManager.JobAdd(job);
-            
+
             return Ok();
         }
 
@@ -44,20 +44,22 @@ namespace IoTechBackend.Controllers
         public IActionResult Update(Job job)
         {
             jobManager.JobUpdate(job);
-            
-            return Ok();
+            var result = jobManager.GetJobDetails(job.UserId);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
 
-            var user = context.Jobs.Find(id);
+            var job = context.Jobs.Find(id);
 
-            if (user == null)
+            if (job == null)
                 return NotFound();
-            jobManager.JobDelete(user);
-            return NoContent();
+            jobManager.JobDelete(job);
+            var result = jobManager.GetJobDetails(job.UserId);
+
+            return Ok(result);
         }
 
     }

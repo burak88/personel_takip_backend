@@ -15,6 +15,7 @@ namespace Entity.DTOs
         public DateTime Date { get; set; }
         public int UserId { get; set; }
         public string Name { get; set; }
+        public int WorkTypeId { get; set; }
         public string WorkTypeName { get; set; }
     }
 }

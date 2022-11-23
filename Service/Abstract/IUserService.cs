@@ -13,7 +13,7 @@ namespace Service.Abstract
         void UserAdd(User user);
         void UserDelete(User user);
         void UserUpdate(User user);
-        User GetById(int id);
+        List<User> GetById(int id);
         List<User> GetList();
         List<UserDetailDto> GetUserDetail();
     }

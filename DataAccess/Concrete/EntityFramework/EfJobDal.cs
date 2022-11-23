@@ -30,6 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  Date = j.Date,
                                  Name = u.Name,
                                  UserId = j.UserId,
+                                 WorkTypeId = j.WorkTypeId,
                                  WorkTypeName = w.WorkTypeName
                              };
                 return result.Where(x=>x.UserId == id).ToList();

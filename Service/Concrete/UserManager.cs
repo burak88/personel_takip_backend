@@ -19,9 +19,9 @@ namespace Service.Concrete
             _userDal = userDal;
         }
 
-        public User GetById(int id)
+        public List<User> GetById(int id)
         {
-            return _userDal.Get(p => p.UserId == id);
+            return _userDal.List(x=>x.UserId==id);
         }
 
         public List<User> GetList()
